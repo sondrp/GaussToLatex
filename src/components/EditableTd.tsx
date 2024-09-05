@@ -16,7 +16,7 @@ export default function EditableTd(props: Props) {
   }, [tdProps.value])
 
   return (
-    <td className={cn(className)} onClick={() => ref.current?.focus()}>
+    <td className={cn(className)} onClick={() => ref.current?.select()}>
       <input className={cn(inputClassName)} {...tdProps} ref={ref} />
     </td>
   )
