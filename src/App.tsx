@@ -12,7 +12,7 @@ function App() {
   const [selectedMatrixIndex, setSelectedMatrixIndex] = useState(0)
 
   const pushMatrix = (matrix: string[][]) => {
-    setMatrices(draft => {
+    setMatrices((draft) => {
       draft.push(matrix)
     })
     setSelectedMatrixIndex(matrices.length)
@@ -22,23 +22,22 @@ function App() {
     setMatrices((draft) => {
       draft.splice(index, 1)
     })
+    setSelectedMatrixIndex((old) => Math.max(0, old - 1))
   }
 
   const editCell = (rowIndex: number, colIndex: number, value: string) => {
-    setMatrices(draft => {
+    setMatrices((draft) => {
       draft[selectedMatrixIndex][rowIndex][colIndex] = value
     })
   }
 
-
-  // will not push, but splice the matrix in, after the index. Making it possible to expand previous?
   const commitAndContinue = () => {
     if (selectedMatrixIndex < matrices.length) {
-      const newMatrix = matrices[selectedMatrixIndex].map(row => [...row])
-      setMatrices(draft => {
+      const newMatrix = matrices[selectedMatrixIndex].map((row) => [...row])
+      setMatrices((draft) => {
         draft.splice(selectedMatrixIndex, 0, newMatrix)
       })
-      setSelectedMatrixIndex(old => old + 1) // increment selection to select the new matrix
+      setSelectedMatrixIndex((old) => old + 1) // increment selection to select the new matrix
     }
   }
 
@@ -51,7 +50,10 @@ function App() {
             <Fragment key={i}>
               <MatrixDisplay
                 deleteMatrix={() => deleteMatrix(i)}
-                className={cn(i === selectedMatrixIndex && 'scale-110')}
+                className={cn(
+                  i === selectedMatrixIndex &&
+                    'scale-110 shadow-xl shadow-slate-400',
+                )}
                 onClick={() => setSelectedMatrixIndex(i)}
                 matrix={matrix}
               />
@@ -64,17 +66,22 @@ function App() {
           ))}
         </div>
       </Navbar>
-      <div className="flex h-full w-full gap-10 py-20 items-end">
+      <div className="flex h-full w-full items-end gap-10 py-20">
         <div className="w-1/5" />
-        {selectedMatrixIndex < matrices.length &&
-        <>
-          <MatrixEditorTable
-          editCell={editCell}
-          matrix={matrices[selectedMatrixIndex]}
-          />
-          <button className='border border-black bg-green-700 rounded-md text-slate-100 py-2 px-4' onClick={commitAndContinue}>Opprett kopi og gå videre</button>
+        {selectedMatrixIndex < matrices.length && (
+          <>
+            <MatrixEditorTable
+              editCell={editCell}
+              matrix={matrices[selectedMatrixIndex]}
+            />
+            <button
+              className="rounded-md border border-black bg-green-700 px-4 py-2 text-slate-100"
+              onClick={commitAndContinue}
+            >
+              Opprett kopi og gå videre
+            </button>
           </>
-        }
+        )}
       </div>
     </div>
   )

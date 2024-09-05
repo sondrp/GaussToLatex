@@ -7,7 +7,7 @@ type Props = {
 } & React.HTMLAttributes<HTMLDivElement>
 
 export default function MatrixDisplay(props: Props) {
-  const { matrix, deleteMatrix, className, ...divProps } = props
+  const { matrix, deleteMatrix, className, onClick, ...divProps } = props
 
   return (
     <div
@@ -30,7 +30,7 @@ export default function MatrixDisplay(props: Props) {
       >
         <img src={cross} alt="open/close navgbar" className="size-3" />
       </button>
-      <table>
+      <table onClick={onClick}>
         <tbody>
           {matrix.map((row, i) => (
             <tr key={i}>
