@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
+    "gauss-jordan-to-latex": "file:",
     "immer": "^10.1.1",
     "react": "^18.3.1",
     "react-dnd": "^16.0.1",
