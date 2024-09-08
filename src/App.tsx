@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { cn } from './utils/cn'
 import arrowLeft from './assets/arrowLeft.svg'
 import { useImmer } from 'use-immer'
@@ -6,7 +6,8 @@ import MatrixCreator from './components/MatrixCreator'
 import MatrixDisplay from './components/MatrixDisplay'
 import MatrixEditorTable from './components/MatrixEditorTable'
 import Navbar from './components/Navbar'
-import LaTextarea from './components/LaTextarea'
+import CopyTextArea from './components/CopyTextarea'
+import { generateLatex } from './utils/generateLatex'
 
 export const ItemTypes = {
   ROW: 'row',
@@ -118,13 +119,11 @@ function App() {
           )}
         </div>
         <div className="flex w-1/3 flex-col items-end gap-2">
-          <textarea
-            readOnly
-            className="h-14 w-80 resize-none bg-slate-300 p-4 outline-none"
+          <CopyTextArea
             value="\usepackage{amsmath}"
           />
           {matrices.length > 0 && (
-            <LaTextarea breakpoints={breakpoints} matrices={matrices} />
+            <CopyTextArea value={generateLatex(matrices, breakpoints)} />
           )}
         </div>
       </div>
