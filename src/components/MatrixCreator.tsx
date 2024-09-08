@@ -19,7 +19,7 @@ export default function MatrixCreator(props: Props) {
 
   return (
     <div className="flex w-fit flex-col">
-      <div className="flex justify-between">
+      <div className="flex gap-2 justify-between">
         <input
           value={height}
           onChange={(e) => setHeight(parseInt(e.target.value, 10) || 0)}
@@ -36,7 +36,7 @@ export default function MatrixCreator(props: Props) {
         onClick={handleCreate}
         className="text-sm italic tracking-wide underline"
       >
-        Opprett ny matrise
+        New matrix
       </button>
     </div>
   )
