@@ -15,6 +15,7 @@ Features:
 Note that if the matrices seem to overflow in a strange way, you need to click on an arrow to make a new line.
 
 Missing features:
-- Fractions (\frac{}{})
-- Multiply / add constant to a row
+- Fractions (\frac{}{}).
+- Multiply / add constant to a row.
 - Change order of matrices.
+- Proper formatting on the latex output.
